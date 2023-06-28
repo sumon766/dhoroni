@@ -42,7 +42,9 @@ ActiveRecord::Schema[7.0].define(version: 20_230_628_094_411) do
     t.bigint 'author_id'
     t.index ['author_id'], name: 'index_posts_on_author_id'
   end
+end
 
+ActiveRecord::Schema[7.0].define(version: 20_230_628_094_411) do
   create_table 'users', force: :cascade do |t|
     t.string 'name'
     t.string 'image'
