@@ -6,14 +6,11 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
   - [Install](#install)
   - [Usage](#usage)
-  - [Run tests](#run-tests)
-  - [Deployment](#deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -56,14 +53,6 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LIVE DEMO -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- [Live Demo is Not Available Yet]()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
@@ -71,16 +60,6 @@
 To get a local copy up and running, follow these steps.
 
 ### Prerequisites
-
-In order to run this project you need:
-
-
-Example command:
-
-```sh
- gem install rails
-```
-
 
 ### Setup
 
@@ -106,21 +85,6 @@ Example command:
   cd my-project
   gem install
 ```
--
-
-### Usage
-
-To run the project, execute the following command:
-
-
-Example command:
-
-```sh
-  rails server
-```
--
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
 
