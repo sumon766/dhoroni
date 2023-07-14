@@ -10,10 +10,10 @@ RSpec.describe Comment, type: :model do
   end
 
   describe 'validations' do
-    it 'requires content to be present' do
+    it 'requires comment to be present' do
       comment = Comment.new
       comment.valid?
-      expect(comment.errors[:content]).to include("can't be blank")
+      expect(comment.errors[:comment]).to include("can't be blank")
     end
   end
 
@@ -24,12 +24,11 @@ RSpec.describe Comment, type: :model do
                   likes_counter: 0)
     end
 
-    subject { described_class.create(content: 'My comment', post: post, author_id: user.id) }
+    subject { described_class.create(comment: 'My comment', post: post, author_id: user.id) }
 
-    it 'posts comments count should increase' do
+    it 'post comments count should increase' do
       expect do
         subject
-        subject.update_post_comment_counter
         post.reload
       end.to change { post.comments_counter }.by(1)
     end

@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   before_save :update_user_posts_counter
 
   def recent_comments
-    comments.order(created_at: :desc).limit(5)
+    comments.includes(:author).order(created_at: :desc).limit(5)
   end
 
   def update_user_posts_counter

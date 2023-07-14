@@ -86,4 +86,43 @@ RSpec.describe Post, type: :model do
       expect(author.reload.posts_counter).to eq(1)
     end
   end
+
+  describe '#recent_comments' do
+    let(:user) { User.create(name: 'John Doe') }
+    let(:post) { Post.create(title: 'My post', author: user) }
+
+    let!(:comment1) { Comment.create(comment: 'Comment 1', author: user, post: post, created_at: 5.days.ago) }
+    let!(:comment2) { Comment.create(comment: 'Comment 2', author: user, post: post, created_at: 4.days.ago) }
+    let!(:comment3) { Comment.create(comment: 'Comment 3', author: user, post: post, created_at: 3.days.ago) }
+    let!(:comment4) { Comment.create(comment: 'Comment 4', author: user, post: post, created_at: 2.days.ago) }
+    let!(:comment5) { Comment.create(comment: 'Comment 5', author: user, post: post, created_at: 1.day.ago) }
+    let!(:comment6) { Comment.create(comment: 'Comment 6', author: user, post: post, created_at: Time.now) }
+
+    it 'returns the most recent 5 comments for the post' do
+      expect(post.recent_comments).to eq([comment6, comment5, comment4, comment3, comment2])
+    end
+  end
+
+  describe '#validate_title_length' do
+    let(:author) { User.create(name: 'John Doe') }
+
+    context 'when the title is within the maximum length' do
+      let(:post) { Post.new(title: 'Valid title', author: author) }
+
+      it 'does not add an error' do
+        post.validate_title_length
+        expect(post.errors[:title]).to be_empty
+      end
+    end
+
+    context 'when the title exceeds the maximum length' do
+      let(:long_title) { 'a' * 251 }
+      let(:post) { Post.new(title: long_title, author: author) }
+
+      it 'adds an error for title length' do
+        post.validate_title_length
+        expect(post.errors[:title]).to include('is too long (maximum is 250 characters)')
+      end
+    end
+  end
 end
