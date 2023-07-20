@@ -16,4 +16,14 @@ RSpec.describe 'Posts', type: :request do
       expect { get "/users/#{user_id}" }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe 'GET /users/:user_id' do
+    it 'renders the users by id' do
+      user = User.create(name: 'Sumon', posts_counter: 2)
+      get "/users/#{user.id}"
+
+      expect(response).to have_http_status(:ok)
+      expect(response).to render_template(:show)
+    end
+  end
 end
