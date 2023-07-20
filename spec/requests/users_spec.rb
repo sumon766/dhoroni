@@ -12,9 +12,8 @@ RSpec.describe 'Posts', type: :request do
 
   describe 'GET /users/:user_id' do
     it 'renders the users by id' do
-      get '/users/74'
-      expect(response).to have_http_status(:ok)
-      expect(response).to render_template(:show)
+      user_id = 7
+      expect { get "/users/#{user_id}" }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

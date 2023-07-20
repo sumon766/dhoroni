@@ -10,9 +10,12 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
-  describe 'GET /users/:user_id/posts.:id' do
+  describe 'GET /users/:user_id/posts/:id' do
     it 'renders the show template' do
-      get '/users/74/posts/1'
+      user_id = 7
+      post_id = 14
+
+      get "/users/#{user_id}/posts/#{post_id}", params: { user_id: user_id, id: post_id }
       expect(response).to have_http_status(:ok)
       expect(response).to render_template(:show)
     end
