@@ -1,1 +1,16 @@
-<h1>This is a single post</h1>
+<div class="post-details">
+    <div class="posts">
+        <div class="items">
+            <b>Post #<%= @index + 1 %> by <%=link_to @users.name, "/users" %></b>
+            <div class="likes-comments">
+            <h5>Comments: <%= @post.comments.count %></h5>
+            <h5>Likes: <%= @post.likes.count %></h5>
+        </div>
+    </div>
+    <p class="post-description">
+        <%= @post.description %>
+    </p>
+    <% @post.comments.each do |comment| %>
+        <p><%= comment.author.name %>: <%= comment.comment %></p>
+    <% end %>
+</div>
