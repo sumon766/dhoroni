@@ -9,17 +9,12 @@ class CommentsController < ApplicationController
   def create
     @user = @current_user
     @post = Post.find_by(id: params[:post_id])
-
-    puts "params[:post_id]: #{params[:post_id]}"
-    puts "@post: #{@post.inspect}"
-
-    if @post.nil?
-      redirect_to root_path
+    @comment = Comment.new(author_id: @user.id, post_id: @post.id, comment: params[:comment][:comment])
+    if @comment.save
+      redirect_to user_post_path(@user, @post), notice: 'Comment was successfully created.'
     else
-      @comment = Comment.new(user_id: @user.id, post_id: @post.id, comment: params[:comment])
-
-      flash[:error] = 'Comment could not be saved' unless @comment.save
-      redirect_to user_post_path(@user, @post)
+      flash.now[:errors] = @comment.errors.full_messages
+      render :new
     end
   end
 end
