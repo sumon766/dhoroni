@@ -14,7 +14,8 @@
     <div class="posts">
       <b>Post #<%= index + 1 %></b>
       <p class="post-text">
-        <%= link_to truncate(post.description, length: 20)..., user_post_path(post.author, post) %>
+        <%= link_to truncate(post.description, length: 20), user_post_path(post.author, post) %>
+
       </p>
 
       <div class="coutner-cont">

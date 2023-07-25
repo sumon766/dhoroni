@@ -8,6 +8,7 @@
         </div>
     </div>
     <p class="post-description">
+        <b><%= @post.title %></b><br><br>
         <%= @post.description %>
     </p>
     <% @post.comments.each do |comment| %>
