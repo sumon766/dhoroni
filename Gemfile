@@ -6,6 +6,8 @@ gem 'rspec-rails'
 
 gem 'rails-controller-testing'
 
+gem 'devise'
+
 ruby '3.0.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -67,6 +69,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem 'letter_opener'
 end
 
 group :test do
