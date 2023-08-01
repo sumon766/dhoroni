@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @users = User.find(params[:user_id])
-    @posts = @users.posts
+    @user = User.includes(posts: :comments).find(params[:user_id])
+    @posts = @user.posts
     @comments = Comment.where(post_id: @posts.pluck(:id))
   end
 
@@ -19,10 +19,18 @@ class PostsController < ApplicationController
 
   def create
     @user = @current_user
-    @post = Post.new(params.require(:post).permit(:title, :description).merge(author_id: @user.id))
-    @post.author_id = @user.id
+    @post = Post.new(post_params.merge(author_id: @user.id))
 
-    @post.save
-    redirect_to user_posts_url(@post.author_id)
+    if @post.save
+      redirect_to user_posts_url(@user)
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :description)
   end
 end

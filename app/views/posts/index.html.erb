@@ -1,32 +1,33 @@
 <div class="user-posts">
-    <div class="user-details">
-        <div class="user-image">
-            <img src="<%= @users.image %>" class="image">
-        </div>
-
-        <div class="user-info">
-            <h2><%=link_to @users.name, "/users" %></h2>
-            <p>Number of posts: <%= @users.posts.count %></p>
-        </div>
+  <div class="user-details">
+    <div class="user-image">
+      <img src="<%= @user.image %>" class="image">
     </div>
 
-    <% @posts.each_with_index do |post, index| %>
-        <div class="posts">
-            <b>Post #<%= index + 1 %></b>
-            <p class="post-text">
-                <%= link_to truncate(post.description, length: 20)..., user_post_path(@users, post) %>
-            </p>
+    <div class="user-info">
+      <h2><%= link_to @user.name, user_path(@user) %></h2>
+      <p>Number of posts: <%= @user.posts.count %></p>
+    </div>
+  </div>
 
-            <div class="coutner-cont">
-                <h6>Comments: <%= post.comments.count %></h6>
-                <h6>Likes: <%= post.likes.count %></h6>
-            </div>
+  <% @posts.each_with_index do |post, index| %>
+    <div class="posts">
+      <b>Post #<%= index + 1 %></b>
+      <p class="post-text">
+        <%= link_to truncate(post.description, length: 20), user_post_path(post.author, post) %>
 
-            <% post.recent_comments.each do |comment| %>
-                <p><%= comment.author.name %>: <%= comment.comment %></p>
-            <% end %>
-        </div>
-    <% end %>
+      </p>
 
-    <button class="pagination">Pagination</button>
+      <div class="coutner-cont">
+        <h6>Comments: <%= post.comments.count %></h6>
+        <h6>Likes: <%= post.likes.count %></h6>
+      </div>
+
+      <% post.recent_comments.each do |comment| %>
+        <p><%= comment.author.name %>: <%= comment.comment %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <button class="pagination">Pagination</button>
 </div>

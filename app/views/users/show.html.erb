@@ -15,13 +15,14 @@
 
     <% @user.recent_posts.each do |post| %>
         <div class="recent-posts">
-            <h3><%= link_to post.title, user_post_path(post) %></h3>
+            <%= link_to post.title, user_post_path(@user, post) %>
             <p><%= post.description %></p>
             <div class="like-comment">
                 <span class="comment">Comments: <%= post.comments_counter %></span> 
                 <span class="like"span>Likes: <%= post.likes_counter %></span>
             </div>
         </div>
+        <br><br>
     <% end %>
 
     <div class="see-posts">

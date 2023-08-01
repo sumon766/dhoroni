@@ -3,9 +3,9 @@
         <div class="user">
             <div class="image">
                 <% if user.image.present? %>
-                    <%= image_tag(user.image, class: "img") %>
+                    <%= image_tag(user.image, class: "user-img") %>
                 <% else %>
-                    <%= image_tag("no_image_found.png", class: "img") %>
+                    <%= image_tag("no-image-found.png", class: "user-img") %>
                 <% end %>
             </div>
             <div class="details">
