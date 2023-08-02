@@ -9,5 +9,5 @@ class User < ApplicationRecord
     posts.order(created_at: :desc).limit(3)
   end
 
-  devise :database_authenticatable, :registerable, :recoverable,:rememberable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
 end
