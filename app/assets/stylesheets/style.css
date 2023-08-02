@@ -2,3 +2,28 @@
   height: 40px;
   width: 40px;
 }
+
+.align-center {
+  width: 40% !important;
+  margin: 0 auto !important;
+}
+
+.align-center h2 {
+  font-family: sans-serif;
+}
+
+.align-center form input[type=email],
+input[type=password],
+input[type=text] {
+  width: 100%;
+  padding: 8px 15px;
+  margin-bottom: 25px;
+  margin-top: 5px;
+}
+
+.align-center form input[type=submit] {
+  padding: 10px 15px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  margin: 15px 0;
+}
