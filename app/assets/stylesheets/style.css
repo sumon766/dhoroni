@@ -12,7 +12,9 @@
   font-family: sans-serif;
 }
 
-.align-center form input[type=email], input[type=password], input[type=text] {
+.align-center form input[type=email],
+input[type=password],
+input[type=text] {
   width: 100%;
   padding: 8px 15px;
   margin-bottom: 25px;
@@ -23,5 +25,5 @@
   padding: 10px 15px;
   font-family: 'Courier New', Courier, monospace;
   font-size: 15px;
-  margin: 15px 0px;
+  margin: 15px 0;
 }
