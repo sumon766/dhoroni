@@ -1,22 +1,36 @@
+# ability.rb
+
 class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :show, Post
-    can :index, Post
+    # Define abilities for guest users (not logged in)
+    if user.nil?
+      cannot :manage, :all
+      can :show, Post
+      can :index, Post
+    end
 
-    return unless user.present?
+    # Define abilities for logged-in users
+    if user.present?
+      # Abilities for all users
+      can :show, Post
+      can :index, Post
 
-    can :new, Post, author_id: user.id
-    can :create, Post, author_id: user.id
-    can :destroy, Post, author_id: user.id
+      # Abilities for the post author
+      can :new, Post, author_id: user.id
+      can :create, Post, author_id: user.id
+      can :destroy, Post, author_id: user.id
 
-    can :create, Comment, user_id: user.id
-    can :destroy, Comment, user_id: user.id
+      # Abilities for comments
+      can :create, Comment, author_id: user.id
+      can :destroy, Comment, author_id: user.id
 
-    return unless user.role == 'admin'
-
-    can :destroy, Post
-    can :destroy, Comment
+      # Abilities for admin users
+      if user.role == 'admin'
+        can :destroy, Post
+        can :destroy, Comment
+      end
+    end
   end
 end

@@ -17,7 +17,9 @@
       <p class="post-text">
         <%= link_to truncate(post.description, length: 20), user_post_path(post.author, post) %>
       </p>
-
+      <% if can? :destroy, post %>
+      <%= button_to "Delete", user_post_path(post.author, post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" } %>
+    <% end %>
       <div class="coutner-cont">
         <h6>Comments: <%= post.comments.count %></h6>
         <h6>Likes: <%= post.likes.count %></h6>
