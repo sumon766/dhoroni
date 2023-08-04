@@ -10,12 +10,12 @@
     </div>
   </div>
 
+  <!-- posts/index.html.erb -->
   <% @posts.each_with_index do |post, index| %>
     <div class="posts">
       <b>Post #<%= index + 1 %></b>
       <p class="post-text">
         <%= link_to truncate(post.description, length: 20), user_post_path(post.author, post) %>
-
       </p>
 
       <div class="coutner-cont">
@@ -25,9 +25,11 @@
 
       <% post.recent_comments.each do |comment| %>
         <p><%= comment.author.name %>: <%= comment.comment %></p>
+       
       <% end %>
     </div>
   <% end %>
 
   <button class="pagination">Pagination</button>
+
 </div>

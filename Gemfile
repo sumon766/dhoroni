@@ -71,6 +71,7 @@ group :development do
   # gem "spring"
 
   gem 'letter_opener'
+  gem 'cancancan'
 end
 
 group :test do
